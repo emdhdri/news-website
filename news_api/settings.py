@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     #3rd party apps
     'rest_framework',
     #local apps
-    'news.apps.NewsConfig'
+    'news.apps.NewsConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
