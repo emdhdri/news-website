@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework.views import APIView
-from .serializers import newsSerializer
+from .serializers import NewsSerializer
 from news.models import News
 from django.db.models import Q
 import operator
@@ -24,7 +24,7 @@ class NewsList(APIView):
         else:
             news_list = News.objects.all()
 
-        response_data = newsSerializer(news_list, many=True)
+        response_data = NewsSerializer(news_list, many=True)
         return Response(data=response_data.data)
 
 
@@ -41,5 +41,5 @@ class NewsByPrimaryKey(APIView):
         
     def get(self, request, pk):
         news_object = self.get_object(pk)
-        response_data = newsSerializer(news_object).data
+        response_data = NewsSerializer(news_object).data
         return Response(response_data)
