@@ -2,7 +2,6 @@ from django.test import TestCase
 from news.models import News
 import lorem
 
-
 NEWS_TEXT = lorem.paragraph()
 
 class NewsTest(TestCase):
