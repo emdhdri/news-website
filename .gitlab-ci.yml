@@ -45,7 +45,7 @@ default:
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
     - apt-get -y update
-    - apt-get -y install python3.10 python3-pip mysql-client libmysqlclient-dev
+    - apt-get -y install python3.10 python3-pip mysql-client libmysqlclient-dev pkg-config
     - python3 -m pip install --upgrade pip
     - python3 -m pip install -r requirements.txt
 
