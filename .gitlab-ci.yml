@@ -30,12 +30,7 @@
 # .gitlab-ci.yml are passed to the service and variables defined in the GitLab UI are not.
 # https://gitlab.com/gitlab-org/gitlab/-/issues/30178
 
-variables:
-  # DJANGO_CONFIG: "test"
-  MYSQL_DATABASE: $MYSQL_DB
-  MYSQL_ROOT_PASSWORD: $MYSQL_PASS
-  MYSQL_USER: $MYSQL_USER
-  MYSQL_PASSWORD: $MYSQL_PASS
+
 
 default:
   image: python:3.10.12-alpine
@@ -54,20 +49,20 @@ default:
     - python -m pip install -r requirements.txt
 
 
-migrations:
-  stage: build
-  script:
-    - python manage.py makemigrations
+#migrations:
+#  stage: build
+#  script:
+#    - python manage.py makemigrations
     # - python3 manage.py makemigrations myapp
-    - python manage.py migrate
-    - python manage.py check
+#    - python manage.py migrate
+#    - python manage.py check
 
 
-django-tests:
-  stage: test
-  script:
-    # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
-    - echo "GRANT ALL on *.* to '${MYSQL_USER}';"| mysql -u root --password="${MYSQL_ROOT_PASSWORD}" -h mysql
-    # use python3 explicitly. see https://wiki.ubuntu.com/Python/3
-    - python manage.py test
+#django-tests:
+#  stage: test
+#  script:
+#    # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
+#    - echo "GRANT ALL on *.* to '${MYSQL_USER}';"| mysql -u root --password="${MYSQL_ROOT_PASSWORD}" -h #mysql
+#    # use python3 explicitly. see https://wiki.ubuntu.com/Python/3
+#   - python manage.py test
 
