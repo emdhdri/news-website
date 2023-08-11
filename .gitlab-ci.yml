@@ -38,7 +38,7 @@ variables:
   MYSQL_PASSWORD: $MYSQL_PASS
 
 default:
-  image: python:3.10-slim-buster
+  image: python:3.10.12-alpine
   #
   # Pick zero or more services to be used on all builds.
   # Only needed when using a docker container to run your tests in.
