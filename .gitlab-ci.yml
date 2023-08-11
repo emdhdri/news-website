@@ -30,6 +30,8 @@
 # .gitlab-ci.yml are passed to the service and variables defined in the GitLab UI are not.
 # https://gitlab.com/gitlab-org/gitlab/-/issues/30178
 
+variables:
+  DEBIAN_FRONTEND: noninteractive
 
 
 default:
