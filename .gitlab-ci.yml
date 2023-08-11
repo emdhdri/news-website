@@ -47,7 +47,6 @@ default:
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
-    - apt-get update
     - pip install --upgrade pip
     - pip install -r requirements.txt
 
