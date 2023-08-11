@@ -47,8 +47,8 @@ default:
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
-    - pip install --upgrade pip
-    - pip install -r requirements.txt
+    - python -m pip install --upgrade pip
+    - python -m pip install -r requirements.txt
 
 
 migrations:
