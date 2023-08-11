@@ -32,6 +32,12 @@
 
 variables:
   DEBIAN_FRONTEND: noninteractive
+  MYSQL_DATABASE: hello_world_test
+  MYSQL_ROOT_PASSWORD: mysql
+
+
+
+
 
 
 default:
@@ -45,13 +51,17 @@ default:
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
     - apt-get -y update
-    - apt-get -y install python3.10 python3-pip mysql-client libmysqlclient-dev pkg-config
+    - apt-get -y install python3.10 python3-pip mysql-server mysql-client libmysqlclient-dev pkg-config
     - python3 -m pip install --upgrade pip
     - python3 -m pip install -r requirements.txt
 
 
 migrations:
   stage: build
+  services:
+    - mysql
+  before_script:
+    - mysql
   script:
     - python3 manage.py makemigrations
     - python3 manage.py migrate
@@ -60,6 +70,8 @@ migrations:
 
 django-tests:
   stage: test
+  services:
+    - mysql
   script:
     # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
     - echo "GRANT ALL on *.* to '${MYSQL_USER}';"| mysql -u root --password="${MYSQL_ROOT_PASSWORD}" -h mysql
