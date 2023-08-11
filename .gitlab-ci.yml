@@ -47,6 +47,8 @@ default:
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
+    - apk update
+    - apk add make automake gcc g++ subversion python3-dev
     - python -m pip install --upgrade pip
     - python -m pip install -r requirements.txt
 
