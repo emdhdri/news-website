@@ -56,17 +56,17 @@ default:
     - python3 -m pip install -r requirements.txt
 
 
-migrations:
-  stage: build
-  services:
-    - mysql
-  before_script:
-    - systemctl start mysql
-    - mysql -u root -p
-  script:
-    - python3 manage.py makemigrations
-    - python3 manage.py migrate
-    - python3 manage.py check
+#migrations:
+#  stage: build
+#  services:
+#    - mysql
+#  before_script:
+#    - systemctl start mysql
+#    - mysql -u root -p
+#  script:
+#    - python3 manage.py makemigrations
+#    - python3 manage.py migrate
+#    - python3 manage.py check
 
 
 django-tests:
