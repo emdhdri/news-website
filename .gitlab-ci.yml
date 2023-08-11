@@ -47,17 +47,18 @@ default:
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
-    - pip3 install --upgrade pip
-    - pip3 install -r requirements.txt
+    - apt-get update
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
 
 
 migrations:
   stage: build
   script:
-    - python3 manage.py makemigrations
+    - python manage.py makemigrations
     # - python3 manage.py makemigrations myapp
-    - python3 manage.py migrate
-    - python3 manage.py check
+    - python manage.py migrate
+    - python manage.py check
 
 
 django-tests:
@@ -66,5 +67,5 @@ django-tests:
     # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
     - echo "GRANT ALL on *.* to '${MYSQL_USER}';"| mysql -u root --password="${MYSQL_ROOT_PASSWORD}" -h mysql
     # use python3 explicitly. see https://wiki.ubuntu.com/Python/3
-    - python3 manage.py test
+    - python manage.py test
 
