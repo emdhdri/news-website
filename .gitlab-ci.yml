@@ -33,7 +33,7 @@
 
 
 default:
-  image: python:3.10.12-alpine
+  image: ubuntu:20.04
   #
   # Pick zero or more services to be used on all builds.
   # Only needed when using a docker container to run your tests in.
@@ -42,9 +42,9 @@ default:
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
   before_script:
-    - apk update
-    - apk add make automake gcc g++ subversion pkgconfig
-    - pip install --upgrade pip
+    - apt-get update
+    - apt-get install apt-utils
+    - apt-get install python3.10 python3-pip mysql-client libmysqlclient-dev
     - python -m pip install --upgrade pip
     - python -m pip install -r requirements.txt
 
