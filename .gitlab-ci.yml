@@ -32,9 +32,9 @@
 
 variables:
   DEBIAN_FRONTEND: noninteractive
-  MYSQL_DATABASE: hello_world_test
-  MYSQL_ROOT_PASSWORD: mysql
-
+  MYSQL_DATABASE: data
+  MYSQL_ROOT_PASSWORD: password
+  MYSQL_HOST: mysql
 
 
 
@@ -76,5 +76,7 @@ django-tests:
   script:
     # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
     #- echo "GRANT ALL on *.* to '${MYSQL_USER}';"| mysql -u root --password="${MYSQL_ROOT_PASSWORD}" -h mysql
+    - mysql --version
+    - echo "SHOW tables;" | mysql -u root -p"$MYSQL_ROOT_PASSWORD" -h "${MYSQL_HOST}" "${MYSQL_DATABASE}"
     - python3 manage.py test
 
