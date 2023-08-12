@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'news_api.wsgi.application'
 DATABASES = {
       'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': os.environ.get('MYSQL_DATABASE'),
-        	'USER':  os.environ.get('MYSQL_USER'),
-        	'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+         'NAME': 'data',
+            'USER':  'root',
+        	'PASSWORD': 'password',
        	'HOST': 'mysql',
      	  'PORT': '3306',
          'CONN_MAX_AGE':60,
