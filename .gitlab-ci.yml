@@ -1,7 +1,7 @@
 variables:
   DEBIAN_FRONTEND: noninteractive
-  MYSQL_DATABASE: data
-  MYSQL_ROOT_PASSWORD: password
+  MYSQL_DATABASE: $mysql_database_name
+  MYSQL_ROOT_PASSWORD: $root_password
   MYSQL_HOST: mysql
 
 default:
